@@ -16,11 +16,13 @@ const login = async(req, res)=>{
          if(!user){
             return res.status(httpStatus.NOT_FOUND).json({message: "User Not Found"});
          }
+         
+         return res.json(user);
         
-         let isPasswordCorrect = await bcrypt.compare(password, user.password);
-         if(isPasswordCorrect){
+         if(bcrypt.compare(password, user.password)){
             let token = crypto.randomBytes(20).toString("hex");
             user.token = token;
+            return user;
             await user.save();
             return res.status(httpStatus.OK).json({ token: token});
          }else{
@@ -31,7 +33,6 @@ const login = async(req, res)=>{
     }
 
 }
-
 const register = async(req, res)=>{
     const {name, username, password} = req.body;
 
@@ -55,6 +56,7 @@ const register = async(req, res)=>{
           res.json({message: `Something went wrong ${e}`});
     }
 }
+
 
 const getUserHistory = async(req, res)=>{
     const {token} = req.query;

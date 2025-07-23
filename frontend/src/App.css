@@ -33,7 +33,6 @@
   height: 80vh;
   align-items: center;
 }
-
 .landingMainContainer > div:nth-child(1){
   font-size: 1.8rem
 }
@@ -50,10 +49,13 @@
    color: white;
    font-size: 1.6rem;
 }
-.landingMainContainer > div:nth-child(2) img{
-  height: 70vh;
+.landingMainContainer > div:nth-child(2) img {
+  height: 60vh;
   width: auto;
+  max-width: 100%;
+  object-fit: contain; /* or cover, based on your layout need */
 }
+
 .navBar{
   display: flex;
   align-items: center;
@@ -83,4 +85,111 @@
   width: 30vw;
   height: auto;
   border-radius: 20px;
+}
+
+.video-call-ad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  /* padding: 2rem; */
+  background: #fefefe;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: slideIn 1s ease-out forwards;
+  opacity: 0; /* Start hidden for animation */
+  transform: translateX(100px);
+  margin: 1rem auto;
+  max-width: 80%;
+  flex-wrap: wrap;
+}
+
+.video-call-ad img {
+  width: 250px;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.5s ease;
+}
+
+.ad-text h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.ad-text p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Optional hover effect */
+.video-call-ad:hover img {
+  transform: scale(1.05);
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-call-ad {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .video-call-ad img {
+    width: 80%;
+  }
+}
+
+
+
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px); /* Comes from left */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-entry {
+  animation: fadeSlideLeft 0.8s ease-out forwards;
+}
+
+@keyframes fadeSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px); /* Comes from the right */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-image {
+  animation: fadeSlideRight 0.8s ease-out forwards;
+}
+
+
+
+@media screen and (width <= 900px) {
+  .landingMainContainer{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .landingMainContainer > div:nth-child(2) img {
+    margin-top: 4rem;
+    height: auto;
+    width: 90vw;
+    max-height: 60vh;
+  }
 }
